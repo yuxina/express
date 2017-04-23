@@ -1,0 +1,23 @@
+<div ng-show="isShowList == 1">
+	<div ng-repeat="item in allProList track by $index">
+		<div class="prt-lt" ng-show="item.proType.proTypeId == proTypeId">
+			<div class="lt-lt"><img ng-src="/express/{{item.proImgPath}}" alt=""></div>
+			<div class="lt-ct">
+				<p>{{item.proName}}</p>
+				<p class="pr"><i>￥</i><span class="price">{{item.proPrice}}</span>/件</p>
+			</div>
+			<div class="lt-rt">
+				<em class="minus" ng-click="minus(item.proId)"></em>
+				<em class="result">{{item.count}}</em>
+				<em class="add" ng-click="add(item.proId)"></em>
+			</div>
+		</div>
+	</div>
+	<div style="height:.5rem;position:relative;width:100%;"></div>
+</div>
+<div ng-show="isShowList == 0">
+	<h2 style="text-align:center;margin-top:50%;color:#666;">该分类下暂无商品</h2>
+</div>
+<div class="oi-no-order" ng-show="isShowList == 2">
+	<div class="loading-icon"></div> 
+</div>

@@ -1,0 +1,71 @@
+<div ng-controller="register">
+	<section id="main">
+		<article class="page">
+			<div class="page-content fl-page-content">
+				<form name="reForm" ng-submit="submitForm(reForm.$valid)" novalidate>
+					<div class="fl-re-wrap">
+						<input type="text" name="uname" class="fl-re box-fix" placeholder="请输入用户名" ng-pattern="/^[a-zA-Z]\w{3,15}$/" ng-model="uname"  required>
+						<div class="fl-del">
+							<span class="fl-icon-del"></span>
+						</div>
+						<em>
+							<span ng-show="reForm.uname.$dirty && reForm.uname.$invalid">以字母开头，长度在6-12之间，只能包含字符/数字/下划线</span>
+							<span ng-show="nameIsExist">用户名已存在！</span>
+						</em>
+					</div>
+					<div class="fl-re-wrap">
+						<input type="password" name="upwd" class="fl-re box-fix" placeholder="请输入密码" ng-pattern="/^[a-zA-Z]\w{5,11}$/" ng-model="upwd"  required>
+						<div class="fl-del">
+							<span class="fl-icon-del"></span>
+						</div>
+						<em ng-show="reForm.upwd.$dirty && reForm.upwd.$invalid">以字母开头，长度在6-12之间，只能包含字符/数字/下划线</em>
+					</div>
+					<div class="fl-re-wrap">
+						<input type="password" name="upwdA" class="fl-re box-fix" placeholder="请再一次输入密码" ng-model="upwdA" required>
+						<div class="fl-del">
+							<span class="fl-icon-del"></span>
+						</div>
+						<em ng-show="reForm.upwd.$valid"><span ng-show="upwdA!=upwd">两次密码不一致</span></em>
+					</div>
+					<div class="fl-re-wrap">
+						<input type="tel" name="uphone" class="fl-re box-fix" placeholder="请输入手机号" ng-pattern="/^(((13[0-9]{1})|(15[0-35-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/" ng-model="uphone"  required>
+						<div class="fl-del">
+							<span class="fl-icon-del"></span>
+						</div>
+						<em ng-show="reForm.uphone.$dirty && reForm.uphone.$invalid">请正确填写您的手机号码。</em>
+					</div>
+					<div class="fl-re-wrap">
+					<div class="sex">
+					    <span class="warning f_left">请选择性别！</span>
+					    <div id="sexBtn" class="f_right">
+					        <div class="male f_left">
+					            <label for="male">                        
+					                <input type="radio" name="sex" id="male" ng-model="usex" value="0" checked>男
+					            </label>
+					            <span class="btn-s active">男</span>
+					        </div>
+					        <div class="female f_left">
+					            <label for="female">
+					                <input type="radio" name="sex" id="female" ng-model="usex" value="1">女
+					            </label>
+					            <span class="btn-s">女</span>
+					        </div>                    
+					    </div>         
+					</div>
+					</div>
+					<input class="btn btn-login btn-block" ng-disabled="reForm.$invalid" type="submit" value="注册" />
+	<!-- 				<div class="login-info-wrap clearfix">
+						<a href="#" class="forget-pwd"><span>忘记密码?</span></a> <a href="#"
+							class="register-new"><span>注册账号</span></a>
+					</div> -->
+				</form>
+			</div>
+		</article>
+	</section>
+</div>
+<<script type="text/javascript">
+$("#sexBtn label").click(function() {
+    $(this).siblings("span").addClass("active");
+    $(this).parent().siblings("div").find("span").removeClass("active");
+}); 
+</script>

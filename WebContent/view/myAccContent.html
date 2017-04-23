@@ -1,0 +1,102 @@
+<div ng-controller="account">
+	<section id="main">
+		<article  class="page" style="top:0;">
+			<div class="page-content">
+				<!-- 登录 背景 头像 -->
+				<div class="top-wrap">
+					<div class="top">
+						<a ng-click="goSetting()"><span class="top-settings"></span></a>
+						<div class="top-content">
+							<div class="user-photo sex-unman box-fix">
+
+							</div>
+							<div ng-show="isLogin == 0">
+								<span class="click-login vertical-center" ui-sref="login">点击登录</span>
+							</div>
+							<div ng-show="isLogin == 1">
+								<span class="click-login vertical-center" ng-bind="currentUser.uname"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-wrap line-shadow">
+					<div class="form-item cat-line-shadow">
+						<div class="form-label">
+							<span class="ui-pic ui-order vertical-center"></span>我的订单
+						</div>
+						<div class="font-right ui-all-order vertical-center" ng-click="goOrder()">
+							<span>查看全部订单 ></span>
+						</div>
+
+					</div>
+					<div class="flex-wrap ui-psc">
+						<div class="flex" ng-click="waitTakeOrder()">
+							<div class="ui-psc-item">
+								<div class="ui-pay">
+
+								</div>
+							</div>
+							<span class="ui-fu-margin">待接单</span>
+						</div>
+						<div class="flex" ng-click="inServiceOrder()">
+							<div class="ui-psc-item">
+								<div class="ui-service">
+
+								</div>
+							</div>
+							<span class="ui-fu-margin">服务中</span>
+						</div>
+						<div class="flex" ng-click="waitEvalOrder()">
+							<div class="ui-psc-item">
+								<div class="ui-comment">
+
+								</div>
+							</div>
+							<span class="ui-fu-margin">待评价</span>
+						</div>
+					</div>
+				</div>
+				<div class="form-wrap line-shadow">
+					<div ng-click="showRecruit()" class="form-item cat-line-shadow">
+						<div class="form-label">
+							<span class="ui-pic ui-join vertical-center"></span>申请成为校园快递员
+						</div>
+						<div class="font-right ui-all-order vertical-center">
+							<span> ></span>
+						</div>
+					</div>
+					<div class="form-item cat-line-shadow">
+						<a href="tel:4006300111">
+							<div class="form-label">
+								<span class="ui-pic ui-connect vertical-center"></span>联系客服
+							</div>
+							<div class="font-right ui-all-order vertical-center">
+								<span> ></span>
+							</div>
+						</a>
+					</div>
+					<div class="form-item cat-line-shadow">
+						<a ng-click="goAbout()">
+							<div class="form-label">
+								<span class="ui-pic ui-hot-activity vertical-center"></span>关于我们
+							</div>
+							<div class="font-right ui-all-order vertical-center">
+								<span> ></span>
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="blank"></div>
+				<div class="black-overlay" style="display:none;">
+					<div class="screen-center">
+						<div class="recruitBox">
+							<p style="padding-top: 2rem;text-align:center;">招聘兼职跑腿员</p>
+						</div>
+						<div class="rBox-close"><span id="closeBox" class="fl-icon-del"></span></div>
+					</div>
+					
+				</div>
+			</div>
+		</article>		
+	</section>
+</div>

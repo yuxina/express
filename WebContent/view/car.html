@@ -1,0 +1,64 @@
+<div ng-controller="car">
+	<section id="main">
+		<article class="page">
+			<div class="page-content">
+				<form name="orderForm" ng-submit="submitForm(orderForm.$valid)" novalidate>
+					<div class="car-contact">
+						<p><span style="color:red">*</span>联系人：<input type="text" name="contacts" ng-model="contacts" required></p>
+						<p><span style="color:red">*</span>联系电话：<input type="text" name="phone" ng-model="phone" ng-pattern="/^(((13[0-9]{1})|(15[0-35-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/" required></p>
+						<div ng-show="orderForm.phone.$dirty && orderForm.phone.$invalid" style="color:red;padding:0 1.6rem">请输入正确的手机号！</div>
+						<p><span style="color:red">*</span>收件地址：<input type="text" name="address" ng-model="address" required></p>
+					</div>
+					<div class="car-list">
+						<div class="prt-lt" ng-repeat="item in ctList track by $index">
+							<div class="lt-lt"><img ng-src="/express/{{item.proImgPath}}" alt=""></div>
+							<div class="lt-ct">
+								<p>{{item.proName}}</p>
+								<p class="pr"><i>￥</i><span class="price">{{item.proPrice}}</span>/件</p>
+							</div>
+							<div class="lt-rt">
+								<em class="minus" ng-click="minus(item.proId)"></em>
+								<em class="result">{{item.count}}</em>
+								<em class="add" ng-click="add(item.proId)"></em>
+							</div>
+						</div>
+						<div class="car-info">
+							<p>商品总价：<span>￥ {{totalPrice()}}</span></p>
+							<p>免配送费</p>
+						</div>
+					</div>
+					<div class="total-sum">
+						<p>
+							应付金额：<span>￥  {{totalPrice()}}</span>
+						</p>
+						<p>
+							支付方式：<span>现金支付</span>
+						</p>
+					</div>
+					<div class="order-info">
+						<p>
+							<span style="color:red">*</span>快递公司<input type="text" placeholder="请输入快递公司" name="expressFirm" ng-model="expressFirm" requird>
+						</p>
+						<p>
+							<span style="color:red">*</span>配送日期<input type="text" placeholder="今天、明天、备注" name="deliveryDate" ng-model="deliveryDate" requird>
+						</p>
+						<p>
+							<span style="color:red">*</span>取件凭证<input type="text" placeholder="快递取件凭证" name="proof" ng-model="proof" requird>
+						</p>
+						<p>
+							<span style="color:red">*</span>配送时间<input type="text" placeholder="填写方便收件时间" name="deliveryTime" ng-model="deliveryTime" requird>
+						</p>
+						<p>
+							<span style="color:red">*</span>订单备注<input type="text" placeholder="物品名称" name="carDesc" ng-model="carDesc" requird>
+						</p>	
+					</div>
+					<input class="car-button" ng-disabled="orderForm.$invalid" type="submit" value="提交订单" />
+				</form>
+				
+				<div class="blank"></div>
+			</div>
+		</article>
+		<div class="ui-hint {{showError}}" id="errorMsg" style="width: 46.7%;"
+			ng-bind="errorMsg"></div>
+	</section>
+</div>

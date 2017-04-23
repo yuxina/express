@@ -1,0 +1,22 @@
+<div class="hideL" ng-show="showBL"></div>
+<div class="purchased" ng-show="showBL || carItemList == []">
+	<div><h3>已购买的商品：</h3><i class="closeP" id="closeBL" ng-click="closeCarList()"></i></div>
+	<div id="wrapperB">
+		<div id="scrollerB">
+			<div class="buyList">
+				<div class="prt-lt" ng-repeat="item in carItemList track by $index">
+					<div class="lt-lt"><img ng-src="/express/{{item.proImgPath}}" alt=""></div>
+					<div class="lt-ct">
+						<p>{{item.proName}}</p>
+						<p class="pr"><i>￥</i><span class="price">{{item.proPrice}}</span>/件</p>
+					</div>
+					<div class="lt-rt">
+						<em class="minus" ng-click="minus(item.proId,true)"></em>
+						<em class="result">{{item.count}}</em>
+						<em class="add" ng-click="add(item.proId)"></em>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

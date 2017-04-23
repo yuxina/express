@@ -1,0 +1,14 @@
+<div ng-controller="evaluate">
+	<section id="main">
+		<article  class="page">
+			<div class="page-content">
+				<div class="uf-round-wrap">
+					<textarea placeholder="写下对此次服务的评价" class="uf-idea" ng-model="content"></textarea>
+					<button class="btn btn-primary btn-block uf-btn" ng-click="commitEval()">提交</button>
+				</div>
+			</div>
+			<div class="ui-hint {{showError}}" id="errorMsg" style="width: 46.7%;" ng-bind="errorMsg"></div>
+		</article>		
+	</section>
+	
+</div>

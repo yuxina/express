@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.zxx.entity.UserType">
+		<id name="utId" column="utId">
+			<generator class="native"></generator>
+		</id>
+		<property name="utName" type="string" not-null="true"></property>
+		<set name="users" cascade="save-update,delete" inverse="true" lazy="true">
+			<key column="utId"></key>
+			<one-to-many class="com.zxx.entity.User" />
+		</set>
+	</class>
+</hibernate-mapping>

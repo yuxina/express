@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-3-7 10:08:49 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.zxx.entity.CarState" table="car_state" catalog="express">
+        <id name="carSid" type="integer">
+            <column name="car_sid" />
+            <generator class="native" />
+        </id>
+        <property name="carStateInfo" type="string">
+            <column name="car_state_info" length="50" />
+        </property>
+        <set name="cars" table="car" inverse="false" lazy="true">
+            <key>
+                <column name="car_sid"></column>
+            </key>
+            <one-to-many class="com.zxx.entity.Car" />
+        </set>
+    </class>
+</hibernate-mapping>

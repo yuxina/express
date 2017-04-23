@@ -1,0 +1,5 @@
+<ul class="good-nav">
+	<li ng-repeat="ptItem in proTypeList track by $index" id="{{ptItem.proTypeId}}" ng-class="{true: 'current', false: ''}[ptItem.proTypeId == proTypeId]">
+		<a ng-click="changeType(ptItem.proTypeId)"><span>{{ptItem.proTypeName}}</span></a>
+	</li>										
+</ul>

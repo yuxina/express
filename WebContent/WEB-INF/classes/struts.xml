@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 配置为开发模式 -->
+	<constant value="true" name="struts.devMode" />
+
+	<constant name="struts.ui.theme" value="simple" />
+
+	<constant name="struts.i18n.encoding" value="utf-8" />
+
+	<!-- 把扩展名配置为action -->
+	<constant value="action" name="struts.action.extension" />
+
+	<!-- 把主题配置为simple -->
+	<constant value="simple" name="struts.ui.theme" />
+
+	<package name="myPackage" extends="struts-default,json-default" namespace="/pages">
+		<interceptors>
+			<interceptor name="loginInter" class="com.zxx.interceptor.LoginInterceptor"></interceptor>
+		</interceptors>
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="list">/pages/user-list.jsp</result>
+			<result name="adminList">/pages/admin-list.jsp</result>
+			<!-- <result name="loginAdmin">/pages/index.jsp</result> -->
+			<result name="errorAdmin">/pages/login.jsp</result>
+			<result name="loginAdmin">/pages/log_result.jsp</result>
+			<result name="logoutAdmin" type="redirect">/pages/login.jsp</result>
+			<result name="editUI">/pages/user-edit.jsp</result>
+			<result name="toList" type="redirectAction">user_list.action</result>
+			<result type="json">
+				<!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->
+				<!-- 默认将会序列所有有返回值的getter方法的值，而无论该方法是否有对应属性 -->
+				<param name="root">dataMap</param>
+			</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="loginInter">
+				<param name="includeMethods">adminLogin</param>
+			</interceptor-ref>
+		</action>
+		<action name="ut_*" class="userTypeAction" method="{1}">
+			<result name="list">/pages/index.jsp</result>
+		</action>
+		<action name="product_*" class="productAction" method="{1}">
+			<result name="list">/pages/product-list.jsp</result>
+			<result name="addUI">/pages/product-add.jsp</result>
+			<result name="editUI">/pages/product-edit.jsp</result>
+			<result type="json">
+				<!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->
+				<!-- 默认将会序列所有有返回值的getter方法的值，而无论该方法是否有对应属性 -->
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="proType_*" class="productTypeAction" method="{1}">
+			<result name="list">/pages/product-category.jsp</result>
+			<result name="editUI">/pages/product-category-edit.jsp</result>
+			<result type="json">
+				<!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->
+				<!-- 默认将会序列所有有返回值的getter方法的值，而无论该方法是否有对应属性 -->
+				<param name="root">dataMap</param>
+			</result>
+		</action>
+		<action name="car_*" class="carAction" method="{1}">
+			<result name="list">/pages/order-list.jsp</result>
+			<result name="submittedList">/pages/order-list.jsp</result>	
+			<result name="detail">/pages/order-show.jsp</result>	
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>		
+		</action>
+		<action name="eval_*" class="evalAction" method="{1}">
+			<result name="list">/pages/evaluation-list.jsp</result>	
+			<result type="json">
+				<param name="root">dataMap</param>
+			</result>		
+		</action>
+	</package>
+</struts>

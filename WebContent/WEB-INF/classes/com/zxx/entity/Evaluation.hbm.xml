@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-3-20 15:17:49 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.zxx.entity.Evaluation" table="evaluation" catalog="express">
+        <id name="assid" type="string">
+            <column name="assid" length="32" />
+            <generator class="uuid" />
+        </id>
+        <many-to-one name="car" class="com.zxx.entity.Car">
+            <column name="car_id" length="32" not-null="true" />
+        </many-to-one>
+        <property name="content" type="string">
+            <column name="content" length="200" not-null="true" />
+        </property>
+        <property name="addTime" type="timestamp">
+            <column name="addTime" length="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

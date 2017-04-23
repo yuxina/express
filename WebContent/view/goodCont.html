@@ -1,0 +1,38 @@
+<div ng-controller="goodCtrl">
+	<section id="main">
+		<article  class="page">
+			<div class="scroll-msg">
+				<div class="voice">
+				</div>
+				<div class="msg">
+					<marquee>3:30之前送到。11:30之后16:30之后送达。</marquee>
+				</div>					
+			</div>
+			<div class="page-content">
+				<div id="wrapperL" class="good-nav-lf">
+					<div id="scrollerL">	
+						<div ui-view="goodType"></div>
+					</div>
+				</div>
+				<div id="wrapperR" class="good-list">
+					<div id="scrollerR">
+						<div class="goodTab box-fix" id="st1" ui-view="goodList">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="good-footer">
+				<div class="ft-lt">
+					<div class="good-car" id="showBL" ng-click="showCarList()">
+						<span></span><b class="count" ng-show="totalQuality() > 0">{{totalQuality()}}</b>
+					</div>
+					<i>总价：￥<em id="total">{{totalPrice()}}</em></i>
+				</div>
+				<div class="ft-rt" ng-click="goCar()">选好了</div>				
+			</div>
+			<div ui-view="goodCar"></div>
+		</article>	
+		<div class="ui-hint {{showError}}" id="errorMsg" style="width: 46.7%;"
+			ng-bind="errorMsg"></div>	
+	</section>
+</div>

@@ -1,0 +1,64 @@
+<div ng-controller="order">
+	<section id="main">
+		<article  class="page">
+			<div class="page-content">
+		    	<ul class="orderTabUL box">
+		    	   <li ng-click="getAll()" class="active">
+		              <a href="javascript:;">全部</a>
+		           </li>
+		           <li ng-click="getUncommit()">
+		              <a href="javascript:;">待接单</a>
+		           </li>
+		           <li ng-click="getInService()">
+		              <a href="javascript:;">服务中</a>
+		           </li>
+		           <li ng-click="getUnAssgin()">
+		              <a href="javascript:;">待评价</a>
+		           </li>
+	     		</ul>
+	     		<ul id="orderAll" class="oList">
+	     			<li ng-repeat="item in showList track by $index">
+	     				<div>
+		     				<h3>{{item.submitTime}}</h3>
+		     				<p>编号：{{item.carId}}<em class="showOD">更多&nbsp;></em></p>
+		     				<p class="info"><i ng-repeat="p in item.carItems track by $index">{{p.proName}}&nbsp;&nbsp;</i></p>
+		     				<p><span>金额：<em>￥{{item.total}}</em></span></p>
+		     				<div class="state" ng-switch="item.carState.carSid">
+	     						<i ng-switch-when="2" class="click" ng-click="cancel(item.carId,8)">取消订单</i>
+	     						<i ng-switch-when="5" class="click" ng-click="receive(item.carId,6)">确认收货</i>
+	     						<i ng-switch-when="6" class="click" ng-click="goEval(item.carId)">去评价</i>
+	     						<i ng-switch-default>{{item.carState.carStateInfo}}</i>
+	     					</div>
+	     				</div>
+	     			</li>
+	     		</ul>
+	     		
+	     		<div class="oi-no-order" ng-show="isListEmpty == 1">
+		     		<div class="oi-order-icon"></div> 
+		     		<div class="oi-noorder-tips">您暂时没有相关订单!</div>
+	     		</div>
+	     		<div class="oi-no-order" ng-show="isListEmpty == 0">
+		     		<div class="loading-icon"></div> 
+	     		</div>
+	     		
+				<div class="blank"></div>
+
+			</div>
+			<div class="ui-hint {{showError}}" id="errorMsg" style="width: 46.7%;"
+			ng-bind="errorMsg"></div>
+		</article>		
+	</section>
+</div>	
+<script>
+$(document).ready(function(){
+	//tab切换
+  $(".orderTabUL li").click(function(){
+      var i = $(this).index();
+      $(this).addClass('active').siblings().removeClass('active');
+/*       $(".ticket_main ul").eq(i).show();
+      $(".ticket_main ul").eq(i).siblings().hide(); */
+
+  });
+
+});
+</script>

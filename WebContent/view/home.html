@@ -1,0 +1,142 @@
+<div ng-controller="home">
+	<section id="main">
+		<article  class="page">
+			<div class="page-content">
+				<div class="page-banner" id="play">
+					<ul class="banner-items clearfix" id="bannerUL">
+						<li><img src="/express/resources/images/l1.jpg" alt=""></a></li>
+						<li><img src="/express/resources/images/l2.jpg" alt=""></a></li>
+						<li><img src="/express/resources/images/l3.jpg" alt=""></a></li>
+					</ul>
+					<ul class="banner-dots" id="dotUL">
+						<li class="now"></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+				<nav class="page-nav" >
+					<ul class="clearfix">
+						<li><a ui-sref="good"><img src="/express/resources/images/nav1.png" alt="" /><p>代取快取</p></a></li>
+						<li><a ui-sref="good"><img src="/express/resources/images/nav2.png" alt="" /><p>上门收件</p></a></li>
+						<li><a ui-sref="recruit"><img src="/express/resources/images/nav3.png" alt="" /><p>兼职派送</p></a></li>
+						<li><a href="http://m.kuaidi100.com/index.jsp"><img src="/express/resources/images/nav4.png" alt="" /><p>快单查询</p></a></li>
+					</ul>
+				</nav>
+				<div class="page-hot">
+					<div class="top-line clearfix line-shadow">
+						<div class="hot-wrap">
+							<div class="hot-logo"></div>
+						</div>
+						<div class="hot-content box-fix">
+							<ul>
+								<li class="items show-dots"><span class="font-news">派送时间主要为中午和下午放学后！</span></li>
+								<li class="items show-dots"><span class="font-news">派送时间主要为中午和下午放学后！</span></li>
+							</ul>
+
+						</div>
+					</div>
+				</div>
+				<div class="page-board">
+					<div class="board-top box-fix line-shadow clearfix">
+						<a href="#" class="board-top-left">最新评论</a>
+						<a href="#" class="board-top-right">更多 ></a>
+					</div>
+					<div class="fd-form-item2 font-s line-shadow">
+						<div class="fd-tel-num">1870****250 <span class="fd-comment-time">2016-08-28 16:22</span></div>
+						<div class="font-s">
+							<span class="fd-message fd-no-message">
+								暂时没有任何评价暂时没有任何评价暂时没有任何评价暂时没有任何评价
+							</span>
+						</div>
+					</div>
+					<div class="fd-form-item2 font-s line-shadow">
+						<div class="fd-tel-num">1870****250 <span class="fd-comment-time">2016-08-28 16:22</span></div>
+						<div class="font-s">
+							<span class="fd-message fd-no-message">
+								暂时没有任何评价暂时没有任何评价暂时没有任何评价暂时没有任何评价
+							</span>
+						</div>
+					</div>
+					<div class="fd-form-item2 font-s line-shadow">
+						<div class="fd-tel-num">1870****250 <span class="fd-comment-time">2016-08-28 16:22</span></div>
+						<div class="font-s">
+							<span class="fd-message fd-no-message">
+								暂时没有任何评价
+							</span>
+						</div>
+					</div>					
+				</div>
+				<div class="blank"></div>
+
+			</div>
+		</article>		
+	</section>
+</div>	
+	<script>
+ 
+    var wrap = $('#play').width();
+    // 获取第一个图片 节点对象
+    var firstImg = $('#bannerUL li').first().clone();
+    // 放在 ul 的最后
+    $('#bannerUL').append(firstImg).width($('#bannerUL li').length*$('#bannerUL img').width());
+ 
+    var i = 0;
+ 
+    var timer;
+ 
+    autoPlay();
+ 
+
+    // auto play
+    function autoPlay(){
+        timer = setInterval(function(){
+            i++;
+            moveImg(i);
+        }, 1000);
+ 
+    }
+ 
+ 
+    function moveImg(num){
+ 
+        // 如果是最后一张图片我们怎么办
+        if(i==$('#bannerUL li').length){
+            i = 1;
+            $('#bannerUL').css({left:0});
+        }
+ 
+        // 是第一张
+        if(i==-1){
+            i=$('#bannerUL li').length-2;
+            $('#bannerUL').css({left:($('#bannerUL li').length-1)*-wrap});
+        }
+ 
+        // 移动图片
+        $('#bannerUL').stop().animate({left:i*-wrap},400);
+ 
+        // 换小点的标记
+        if(i==($('#bannerUL li').length-1)){
+            $('#dotUL li').eq(0).addClass('now').siblings().removeClass('now');
+        }else{
+            $('#dotUL li').eq(i).addClass('now').siblings().removeClass('now');
+        }
+    }
+ 
+ 
+    $('#bannerUL li').click(function(){
+    	clearInterval(timer);
+    	setTimeout(function(){
+    		autoPlay();
+    	}, 5000);
+    	
+    });
+    
+ 
+ 
+    // 点击小图标 跳转到指定的页面
+    $('#dotUL li').click(function(){
+        i = $(this).index();   
+        moveImg(i);
+    })
+ 
+</script>

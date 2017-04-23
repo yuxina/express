@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<!-- 使用注解的方式去装配Bean -->
+	<context:component-scan base-package="com.zxx"></context:component-scan>
+
+	<!-- 使用外部的配置文件 -->
+	<context:property-placeholder location="classpath:jdbc.properties" />
+
+	<!-- 配置数据库连接池 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<!-- 基本信息 -->
+		<property name="user" value="${user}"></property>
+		<property name="password" value="${password}"></property>
+		<property name="jdbcUrl" value="${url}"></property>
+		<property name="driverClass" value="${driver}"></property>
+
+		<!-- 其它配置 -->
+	</bean>
+
+	<!-- 配置SessionFactory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<!-- 注入数据库连接池 -->
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- 告诉spring Hibernate的主配置文件 -->
+		<property name="configLocation" value="classpath:hibernate.cfg.xml"></property>
+	</bean>
+
+	<!-- 配置声明式事务 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<!-- 注入SessionFactory -->
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<!-- 配置使用注解的方式声明事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+</beans>

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.zxx.entity.Car" table="car" catalog="express">
+        <id name="carId" type="string">
+            <column name="car_id" length="32" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="carState" class="com.zxx.entity.CarState">
+            <column name="car_sid" not-null="true"></column>
+        </many-to-one>
+        <many-to-one name="user" class="com.zxx.entity.User">
+            <column name="uid" length="32" not-null="true"></column>
+        </many-to-one>
+        <property name="total" type="double">
+            <column name="total" precision="8"></column>
+        </property>
+        <property name="contacts" type="string">
+            <column name="contacts" length="20"></column>
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" length="20"></column>
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="200"></column>
+        </property>
+        <property name="proof" type="string">
+            <column name="proof" length="50"></column>
+        </property>
+        <property name="submitTime" type="timestamp">
+            <column name="submitTime" length="0"></column>
+        </property>
+        <property name="expressFirm" type="string">
+            <column name="expressFirm" length="20"></column>
+        </property>
+        <property name="deliveryDate" type="string">
+            <column name="deliveryDate" length="10"></column>
+        </property>
+        <property name="deliveryTime" type="string">
+            <column name="deliveryTime" length="20"></column>
+        </property>
+        <property name="carDesc" type="string">
+            <column name="car_desc" length="200"></column>
+        </property>
+        <set name="carItems" table="car_item" inverse="true" lazy="true" cascade="save-update,delete">
+            <key>
+                <column name="car_id" length="32" not-null="true" />
+            </key>
+            <one-to-many class="com.zxx.entity.CarItem" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.zxx.entity.ProductType" table="pro_type" catalog="express">
+        <id name="proTypeId" type="string">
+            <column name="pro_type_id" length="32" />
+            <generator class="uuid" />
+        </id>
+        <property name="proTypeName" type="string">
+            <column name="pro_type_name" length="32" not-null="true" />
+        </property>
+        <property name="proTypeDesc" type="string">
+            <column name="pro_type_desc" length="200" />
+        </property>
+        <set name="products" table="product" cascade="save-update,delete" inverse="true" lazy="true">
+            <key>
+                <column name="pro_type_id" length="32" not-null="true" />
+            </key>
+            <one-to-many class="com.zxx.entity.Product" />
+        </set>
+    </class>
+</hibernate-mapping>
+

@@ -1,0 +1,29 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<!-- 配置数据库方言 -->
+		<property name="dialect">
+			org.hibernate.dialect.MySQL5Dialect
+		</property>
+
+
+		<!-- 其它配置 -->
+		<property name="show_sql">true</property>
+		<property name="hbm2ddl.auto">update</property>
+		<property name="javax.persistence.validation.mode">none</property>
+		<!-- 映射配置 -->
+		<mapping resource="com/zxx/entity/User.hbm.xml" />
+		<mapping resource="com/zxx/entity/UserType.hbm.xml" />
+		<mapping resource="com/zxx/entity/Product.hbm.xml" />
+		<mapping resource="com/zxx/entity/ProductType.hbm.xml" />
+		<mapping resource="com/zxx/entity/Car.hbm.xml" />
+		<mapping resource="com/zxx/entity/CarItem.hbm.xml" />
+		<mapping resource="com/zxx/entity/CarState.hbm.xml" />
+		<mapping resource="com/zxx/entity/Evaluation.hbm.xml" />
+		
+
+	</session-factory>
+</hibernate-configuration>
